@@ -120,13 +120,75 @@ CREATE TABLE inve_producto(
 );
 
 
-#inserción de datos de prueba
-insert into materia_prima values ("301",10,"lino","lila");
+#inserción de datos
+insert into cargo (tipo_cargo) values ("Gerente"),("Supervisor"),("Operario"),("Satelite"),("Vendedor");
 
-select * from materia_prima;
+insert into empleado values ("1001","Ramon Fernandez", "3112111111", "Soacha, Cra 1. #12-21", 3),
+							("1002","Flora Martinez", "3122121212", "Bogotá, Bosa, Calle 3 #46-07", 1),
+                            ("1003","Camilo Betancour", "3203212223", "Zipaquira, Km5, Calle 176, #03-12", 4),
+                            ("1004","Erika Martinez", "3143561387", "Bogotá, Bosa, Calle 3 #46-07", 5),
+                            ("1005","Sebastian Ramos", "3128976541", "Bogotá, Suba, Av. 5, Calle 145, C3", 4);
+                            
+select * from empleado;
 
-insert into inve_mp (id_mp, cantidad) values (302,12);
+insert into cliente values ("4001","Pablo Benitez", "3121562498", "Medellin, Av. 6, Calle 31, S5"),
+							("4002","Pedro Fernandez", "3566548998", "Bogota, Av 68, Calle 56, C6"),
+                            ("4003","Paloma Martinez", "3264562233", "Bogota, Av 67, Calle 57, G88"),
+                            ("4004","Patricia Aldana", "3188956621", "Valledupar, Av 99, Calle 32, J6"),
+                            ("4005","Prudencia Pancracia", "3655986452", "Soacha, Av 56, Calle 33, B89"); 
 
+select * from cliente;                            
+
+insert into proveedor values ("3001","Armando Mendoza", "3216568979", "Barranquilla, Av 56, Calle 16, L6"),
+							("3002","Beatriz Pinzon ", "3876541928", "Valledupar, Av 79, Calle 34, B66"),
+                            ("3003","Jose Celestino", "3152963458", "Bogota, Av 65, Calle 42, G3"),
+                            ("3004","Jorge Pedraza", "3256489952", "Soacha, Av 34, Calle 29, S6"),
+                            ("3005","Selena Pancracia", "3756254899", "Medellin, Av 85, Calle 17, A2");
+                            
+select * from proveedor;  
+
+insert into materia_prima values ("301",10,"Seda","Blanco"),
+								 ("302",16,"Lino","Lila"),
+                                 ("303",20,"Licra","Negro"),
+                                 ("304",5,"Cuero","Negro"),
+                                 ("305",30,"Lana","Roja");
+select * from proveedor;  
+
+insert into corte values ("401",1003,301),
+						 ("402",1003,303),
+						 ("403",1005,305),
+						 ("404",1003,304),
+						 ("405",1005,302);
+
+select * from corte; 
+
+insert into producto values ("201","Pantalon Jean con Rotos","Hombre",30000,"Azul"),
+							("202","Pantalon Jean con Rotos","Mujer",34000,"Azul"),
+                            ("203","Ropa Interior","Mujer",21500,"Azul"),
+                            ("204","Camisa","Hombre",56000,"Morado"),
+                            ("205","Blusa","Mujer",25000,"Verde Deportivo");      
+                            
+select * from producto;
+
+insert into inve_mp (id_mp, cantidad)values(301, 45),(302, 12),(303, 20),(304, 25),(305, 1);
 select * from inve_mp;
+insert into inve_corte (id_corte, cantidad)values(401, 22),(402, 8),(403, 41),(404, 3),(405, 18);
+select * from inve_corte;
+insert into inve_producto (id_producto, cantidad)values(201, 22),(202, 8),(203, 41),(204, 3),(205, 18);
+select * from inve_producto;
+
+insert into venta (id_empleado,id_cliente,id_producto,cantidad ,fecha,detalles ,talla)  values (1004,4002,202,4,'2020-12-24',"Cliente Feliz","32"),
+																							   (1004,4003,203,6,'2021-01-21',"Cliente Feliz","12"),
+                                                                                               (1004,4005,204,3,'2020-12-28',"Cliente Feliz","S"),
+                                                                                               (1004,4001,204,2,'2020-12-24',"Cliente Feliz","L"),
+                                                                                               (1004,4005,205,5,'2020-12-30',"Cliente Feliz","XL");
+select * from venta;
+
+insert into compra (id_mp,id_proveedor,fecha,precio,cantidad,detalles) values (302,3001,'2020-10-20',300000,2,"Se compran dos rollos de lino"),
+																			  (304,3003,'2020-10-23',250000,3,"Se compran cuatro rollos de cuero"),
+                                                                              (303,3005,'2020-09-28',450000,4,"Se compran cuatro rollos de licra"),
+                                                                              (305,3002,'2020-09-03',500000,3,"Se compran tres rollos de lana"),
+                                                                              (301,3004,'2020-10-23',350000,2,"Se compran dos rollos de seda");
+select * from compra; 
 
 
