@@ -212,6 +212,8 @@ select COUNT(*) from producto where precio>=30000;
 update inve_producto set cantidad = cantidad-10 where id_producto='203';
 select * from inve_producto;
 
+
+
 #Actualizar el tipo de la tela a 'Algodón' id='302'
 update materia_prima set tipo_tela = 'Algodón' where id_mp='302';
 select * from materia_prima;
@@ -227,3 +229,24 @@ select * from cliente;
 #Actualizar el empleado que trabajo el corte id = '401'
 update corte set id_empleado = '1005' where id_corte = '401';
 select * from corte; 
+
+#Eliminar las ventas realizadas el 24 de dicembre del 2020
+delete from venta where fecha = '2020-12-24';
+select * from venta;
+
+#Eliminar las unidades del inventario de materias primas menores a 10
+delete from inve_mp where cantidad < 10;
+
+#Eliminar las unidades del inventario de materias primas con tela de color blanco
+delete from inve_mp where id_mp = (select id_mp from materia_prima where color = 'Blanco');
+select * from inve_mp;
+
+#Eliminar las ventas del producto 'Blusa'
+delete from venta where id_producto = (select id_p from producto where prenda = 'Blusa');
+select * from venta;
+
+#Eliminar el producto 'Blusa' de inventarios y de la lista de producto de la empresa
+delete from inve_producto where id_producto = (select id_p from producto where prenda = 'Blusa');
+select * from inve_producto;
+delete from producto where prenda = 'Blusa';
+select * from producto;
