@@ -152,7 +152,7 @@ insert into materia_prima values ("301",10,"Seda","Blanco"),
                                  ("303",20,"Licra","Negro"),
                                  ("304",5,"Cuero","Negro"),
                                  ("305",30,"Lana","Roja");
-select * from proveedor;  
+select * from materia_prima;  
 
 insert into corte values ("401",1003,301),
 						 ("402",1003,303),
@@ -192,3 +192,38 @@ insert into compra (id_mp,id_proveedor,fecha,precio,cantidad,detalles) values (3
 select * from compra; 
 
 
+#Consulta de restriccion de funciones
+#Obtener la suma del tamaño de la materia prima en forma de extensión en la tela cuyo color es negro:
+select SUM(tamaño) as "extension" from (materia_prima) where color='Negro';
+
+#Obtener el promedio de las ganancias de las ventas
+select AVG( cantidad*precio) as "Promedio ventas" from producto, venta where id_p=id_producto;
+
+#Obtener el id producto del producto menos vendido
+#select MIN(cantidad), id_producto from venta;
+
+#Obtener la tela de mayor tamaño
+select MAX(tamaño) from materia_prima;
+
+#Obtener los productos cuyos precios son mayores o igual 30000
+select COUNT(*) from producto where precio>=30000;
+
+#Actulizar la cantidad de productos en su inventario, id=203 (-10)
+update inve_producto set cantidad = cantidad-10 where id_producto='203';
+select * from inve_producto;
+
+#Actualizar el tipo de la tela a 'Algodón' id='302'
+update materia_prima set tipo_tela = 'Algodón' where id_mp='302';
+select * from materia_prima;
+
+#Actualizar los datos de la compra, precio, cantidad, detalles cuyo ID_mp = '302'
+update compra set precio = '48000', cantidad = '6', detalles = 'Se compran seis rollos de algodón' where id_mp = '302';
+select * from compra;
+
+#Actualizar los datos del cliente con id = '4005'
+update cliente set nombre = 'Calamardo Tentaculos', telefono = '3214127888', direccion = 'Cundinamarca Soacha Unisur Isla 3' where id_c = '4005';
+select * from cliente;
+
+#Actualizar el empleado que trabajo el corte id = '401'
+update corte set id_empleado = '1005' where id_corte = '401';
+select * from corte; 
